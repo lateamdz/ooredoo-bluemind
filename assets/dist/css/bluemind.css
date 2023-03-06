@@ -1,3 +1,13 @@
 body{
     overflow-x: hidden;
 }
+.form-card{
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    background-color: white;
+    border-radius: 24px;
+    margin-top: 80px;
+    padding: 24px;
+}
+.form-title{
+    font-weight: 700;
+}
