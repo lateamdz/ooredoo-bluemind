@@ -1,16 +1,19 @@
-body{
+body {
     overflow-x: hidden;
 }
-.form-card{
+
+.form-card {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
     background-color: white;
     border-radius: 24px;
     margin-top: 80px;
     padding: 24px;
 }
-.form-title{
+
+.form-title {
     font-weight: 700;
 }
+
 .custom-modal {
     z-index: 150;
     position: fixed;
@@ -26,6 +29,7 @@ body{
     align-items: center;
     justify-content: center;
 }
+
 .red-btn {
     text-decoration: auto;
     color: white;
@@ -41,26 +45,31 @@ body{
 .red-btn:hover {
     color: white;
 }
+
 .custom-modal-popup h4 {
     color: #20b25a;
     text-align: center;
     font-weight: 700;
     /*font-size: 1.4em;*/
 }
-.custom-modal-popup>div {
+
+.custom-modal-popup > div {
 
     background-color: #d4f7e2;
     border-radius: 10px;
 }
+
 .custom-modal-popup h3 {
     color: #20b25a;
     text-align: center;
     font-weight: 700;
 }
+
 .custom-modal-popup p {
     color: #20b25a;
     font-size: 1.2em;
 }
+
 .custom-modal-popup {
     display: flex;
     align-items: center;
