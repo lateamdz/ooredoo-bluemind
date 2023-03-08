@@ -61,9 +61,23 @@
     <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet"/>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript">
+        const db=window.localStorage.getItem("users");
+        const participated= db?JSON.parse(db):[]
+        function verifyUser(element) {
+            if(element.value){
+                if(participated.includes(element.value)){
+                    console.log("user already participated")
+                    document.getElementById("phone").classList.add("input-invalid");
+                    document.getElementById("error-user-exists").classList.remove("d-none");
+                }else{
+                    document.getElementById("error-user-exists").classList.add("d-none");
+                    document.getElementById("phone").classList.remove("input-invalid");
+                }
+            }
+        }
         function process(element) {
-            const recapchaChecked=grecaptcha && grecaptcha.getResponse().length > 0;
-            if(!recapchaChecked) return;
+            const recapchaChecked = grecaptcha && grecaptcha.getResponse().length > 0;
+            if (!recapchaChecked) return;
             // const form = element.closest('form')
             const value = {
                 ["raisonSociale"]: document.getElementById('raisonSociale').value,
@@ -79,19 +93,28 @@
                 ["besoinStockage"]: document.getElementById('besoinStockage').value,
                 // ["condition-accept"]: document.getElementById('condition-accept').checked,
             }
-
+            if (!new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value["email"])) return
+            if (!new RegExp(`^-?[0-9]*$`).test(value["nombreMail"])) return
+            if (!new RegExp(`^-?[0-9]*$`).test(value["besoinStockage"])) return
             const notEmpty = Object.entries(value).every(([key, value]) => value.toString().trim() !== "")
 
             if (notEmpty
                 && recapchaChecked
                 // && document.getElementById('condition-accept').checked
             ) {
-                if (!new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value["email"])) return
-                if (!new RegExp(`^-?[0-9]*$`).test(value["nombreMail"])) return
-                if (!new RegExp(`^-?[0-9]*$`).test(value["besoinStockage"])) return
-                console.log(value);
-                // window.localStorage.setItem("participated","true");
-                document.getElementById("custom-modal").classList.remove("modal-hidden");
+                if(participated.includes(value.phone)){
+
+                    document.getElementById("phone").classList.add("input-invalid");
+                    document.getElementById("error-user-exists").classList.remove("d-none");
+                }else{
+                    document.getElementById("error-user-exists").classList.add("d-none");
+                    document.getElementById("phone").classList.remove("input-invalid");
+
+
+                    window.localStorage.setItem("users",JSON.stringify([...participated,value.phone]));
+                    console.log(value);
+                    document.getElementById("custom-modal").classList.remove("modal-hidden");
+                }
             }
         }
     </script>
@@ -371,6 +394,9 @@
                                 <div class="invalid-feedback">
                                     يرجى ادخال رقم هاتفك.
                                 </div>
+                                <div class="text-invalid d-none" id="error-user-exists">
+                                    رقم هاتف المستخدم موجود مسبقا
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -484,7 +510,7 @@
                     <div id="recaptcha" class="mt-3 g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary " type="submit" id="submit" onclick="process(this)">تأكبد</button>
+                    <button class="w-100 btn btn-primary " id="submit" onclick="process(this)">تأكبد</button>
                 </form>
             </div>
         </div>
