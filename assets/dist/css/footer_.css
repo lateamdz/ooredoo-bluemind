@@ -231,3 +231,8 @@ footer .full-links__menu:before {
     position: absolute;
     left: -5px;
 }
+@media (max-width: 992px) {
+.full-links {
+        display: none;
+    }
+}
