@@ -106,3 +106,15 @@ body {
 .main-menu>li>a {
     font-size: 1.125em;
 }
+.lang-fr .full-links__menu:first-child:before{
+    display: none;
+}
+.lang-ar .full-links__menu:nth-child(3):before{
+    display: none;
+}
+footer .copyrights {
+    background: #3d3d3d;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 14px;
+}
