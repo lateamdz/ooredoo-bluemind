@@ -235,4 +235,11 @@ footer .full-links__menu:before {
 .full-links {
         display: none;
     }
+    .navbar-menu{
+        display: none!important;
+    }
+    .logo > a > img{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    }
 }
