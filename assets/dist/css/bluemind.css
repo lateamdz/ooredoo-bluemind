@@ -81,7 +81,9 @@ body {
     background-color: white;
     border-radius: 14px;
 }
-
+.red-color{
+    color: #dc3545;
+}
 .modal-hidden {
     display: none;
 }
