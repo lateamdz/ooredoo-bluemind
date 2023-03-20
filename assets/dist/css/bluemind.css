@@ -172,7 +172,17 @@ footer .copyrights {
         width: 100% !important;
     }
 }
-
+@media (max-width: 640px){
+    .navbar-header .logo {
+        float: unset!important;
+        width: auto;
+        margin-inline-start: -20%;
+    }
+}
+.v-none{
+    visibility: hidden;
+    pointer-events: none;
+}
 a.logo img {
     max-height: 35px;
 }
